@@ -1,10 +1,13 @@
 FROM alpine
 
-ENV HELM_VERSION="v3.2.0"
+ENV HELM_VERSION="v3.2.1"
 
-RUN apk --update add git less openssh && \
+RUN apk --update add openssl curl bash && \
     rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/* && \
-    wget -q https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
+    rm /var/cache/apk/*
 
-RUN chmod +x /usr/local/bin/helm
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+RUN chmod 700 get_helm.sh
+RUN ./get_helm.sh
+
+ENV HELM_EXPERIMENTAL_OCI=1

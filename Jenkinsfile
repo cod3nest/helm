@@ -15,7 +15,7 @@ try {
     podTemplate(
             label: label,
             containers: [
-                    containerTemplate(name: "jnlp", image: "jenkinsci/jnlp-slave", resourceRequestCpu: "500m", resourceLimitCpu: "1000m", resourceRequestMemory: "200Mi", resourceLimitMemory: "1000Mi"),
+                    containerTemplate(name: "jnlp", image: "jenkins/inbound-agent", resourceRequestCpu: "500m", resourceLimitCpu: "1000m", resourceRequestMemory: "200Mi", resourceLimitMemory: "1000Mi"),
             ],
             volumes: [
                     hostPathVolume(hostPath: "/var/run/docker.sock", mountPath: "/var/run/docker.sock"),
