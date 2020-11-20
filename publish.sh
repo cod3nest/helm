@@ -20,9 +20,9 @@ EOF
 docker-build() {
     local tag=$1
 
-    docker buildx build \
+    docker buildx build --push \
                --platform linux/amd64,linux/arm/v7,linux/arm64 \
-               --tag "${HELM_REPO}:${tag}" \
+               -t ${HELM_REPO}:${tag} \
                .
 }
 
